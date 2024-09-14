@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Header from "./components/layout/Header";
 
 import EstateListing from "./pages/estates/EstateListing";
 import EstateView from "./pages/estates/EstateView";
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
+      <Header />
       <RouterProvider router={router} />
     </>
   );

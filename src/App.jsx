@@ -14,6 +14,8 @@ import EstateCreate from "./pages/estates/EstateCreate";
 
 import AgentsCreate from "./pages/agents/AgentsCreate";
 
+import Layout from "./components/layout/Layout";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
@@ -32,7 +34,9 @@ function App() {
   return (
     <>
       <Header />
-      <RouterProvider router={router} />
+      <Layout>
+        <RouterProvider router={router} />
+      </Layout>
     </>
   );
 }

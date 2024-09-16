@@ -31,7 +31,7 @@ export default function CustomSelector({
     <div className="flex flex-col gap-[5px]">
       {label && (
         <label className="font-firago font-bold text-[14px] leading-[16.8px] text-secondary">
-          {label}
+          {label}*
         </label>
       )}
       <div className="relative ">
@@ -49,7 +49,7 @@ export default function CustomSelector({
 
         {/* Dropdown options */}
         {isOpen && (
-          <div className="absolute w-[384px] max-h-[165px] overflow-y-auto border border-lightGray border-t-0 rounded-b-[6px]">
+          <div className="absolute w-[384px] max-h-[165px] overflow-y-auto border border-lightGray border-t-0 rounded-b-[6px] bg-white z-[10]">
             {/* Default Option */}
             <button
               onClick={() => handleSelect("დაამატე აგენტი")}

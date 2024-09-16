@@ -7,7 +7,7 @@ export default function Input({ label, type, id, value, onChange }) {
     <div className="w-[384px] h-[64px] flex flex-col gap-[5px]">
       <label
         htmlFor={id || "inputField"}
-        className="font-firago font-medium text-[14px] leading-[16.8px] text-secondary h-[17px]"
+        className="font-firago font-bold text-[14px] leading-[16.8px] text-secondary h-[17px]"
       >
         {label}
       </label>

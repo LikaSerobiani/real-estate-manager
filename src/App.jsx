@@ -12,8 +12,6 @@ import EstateListing from "./pages/estates/EstateListing";
 import EstateView from "./pages/estates/EstateView";
 import EstateCreate from "./pages/estates/EstateCreate";
 
-import AgentsCreate from "./pages/agents/AgentsCreate";
-
 import Layout from "./components/layout/Layout";
 
 const router = createBrowserRouter(
@@ -25,7 +23,6 @@ const router = createBrowserRouter(
         <Route path=":id" element={<EstateView />} />
         <Route path="create" element={<EstateCreate />} />
       </Route>
-      <Route path="agents/create" element={<AgentsCreate />} />
     </Route>
   )
 );

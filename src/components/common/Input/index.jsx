@@ -15,7 +15,7 @@ export default function Input({ label, type, id, value, onChange }) {
         type={type || "text"}
         id={id}
         value={value}
-        className="h-[42px] rounded-[6px] border p-[10px] border-lightGray"
+        className="h-[42px] rounded-[6px] border p-[10px] border-lightGray focus:outline-none"
         onChange={onChange}
       />
     </div>

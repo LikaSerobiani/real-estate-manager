@@ -26,9 +26,9 @@ const FileUploader = ({ onFileChange }) => {
   return (
     <div className="flex flex-col gap-[5px]">
       <label className="font-firago font-bold text-[14px] leading-[16.8px] text-secondary">
-        ატვირთეთ ფოტო*
+        ატვირთეთ ფოტო
       </label>
-      <div className="relative w-[799px] h-[120px] rounded-[8px] border border-dashed border-[#2D3648] bg-white">
+      <div className="relative w-[788px] h-[120px] rounded-[8px] border border-dashed border-[#2D3648] bg-white">
         <input
           type="file"
           id="fileInput"

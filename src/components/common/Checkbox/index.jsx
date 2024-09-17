@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Check from "../Icons/Check";
 
-const Checkbox = ({ id, label, checked, onChange }) => {
+const Checkbox = ({ id, label, checked = false, onChange }) => {
   const [isChecked, setIsChecked] = useState(checked);
 
   const handleCheckboxChange = () => {
@@ -41,11 +41,6 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   checked: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-};
-
-Checkbox.defaultProps = {
-  checked: false,
-  label: "",
 };
 
 export default Checkbox;

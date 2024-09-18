@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Tag from "../Tag";
 
@@ -10,6 +11,7 @@ import Resize from "../../../common/Icons/Resize";
 import PostSign from "../../../common/Icons/PostSign";
 
 export default function Card({
+  id,
   image,
   title,
   price,
@@ -17,7 +19,13 @@ export default function Card({
   zip_code,
   area,
   bedrooms,
+  is_rental,
 }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/estates/${id}`);
+  };
   return (
     <div
       className="relative w-96 h-[455px] rounded-[14px] cursor-pointer"
@@ -30,6 +38,7 @@ export default function Card({
       onMouseLeave={(e) => {
         e.currentTarget.style.boxShadow = "none";
       }}
+      onClick={handleCardClick}
     >
       <div className="relative">
         <img
@@ -38,7 +47,7 @@ export default function Card({
           className="h-[307px] w-full rounded-t-[14px] rounded-b-none"
         />
         <div className="absolute top-[23px] left-[23px]" style={{ zIndex: 10 }}>
-          <Tag />
+          <Tag is_rental={is_rental} />
         </div>
       </div>
       <div
@@ -48,7 +57,7 @@ export default function Card({
           borderColor: "#DBDBDB",
         }}
       >
-        <div className="w-[334px] h-[60px] flex flex-col gap-[6px]">
+        <div className="h-[60px] flex flex-col gap-[6px]">
           <span className="font-bold leading-[33.6px] text-[28px] text-secondary h-[34px]">
             {price} ₾
           </span>
@@ -60,17 +69,17 @@ export default function Card({
             </span>
           </div>
         </div>
-        <div className="w-[214px] h-6 flex gap-[32px] text-secondary text-opacity-70 items-center">
-          <div className="w-[37px] h-[24px] flex gap-[5px] items-center">
+        <div className="h-6 flex gap-[32px] text-secondary text-opacity-70 items-center">
+          <div className="h-[24px] flex gap-[5px] items-center">
             <Bed />
-            <span className="w-2 h-[19px] font-normal text-[16px] leading-[19.2px]">
+            <span className="h-[19px] font-normal text-[16px] leading-[19.2px]">
               {bedrooms}
             </span>
           </div>
-          <div className="w-[59px] h-[19px] flex items-center gap-[5px]">
+          <div className="h-[19px] flex items-center gap-[5px]">
             <Resize />
-            <div className="w-[36px] flex gap-[1px]">
-              <span className="w-[30px] font-normal text-[15px] leading-[19.2px]">
+            <div className="flex gap-[1px]">
+              <span className="font-normal text-[15px] leading-[19.2px]">
                 {area} მ
               </span>
               <span className="w-[5px] h-3 text-[10px] leading-3 font-normal">
@@ -78,11 +87,9 @@ export default function Card({
               </span>
             </div>
           </div>
-          <div className="w-[54px] h-[19px] flex items-center gap-[5px]">
+          <div className="h-[19px] flex items-center gap-[5px]">
             <PostSign />
-            <span className="leading-[19.2px] text-[16px] font-normal">
-              {zip_code}
-            </span>
+            <span className="text-[16px] font-normal">{zip_code}</span>
           </div>
         </div>
       </div>

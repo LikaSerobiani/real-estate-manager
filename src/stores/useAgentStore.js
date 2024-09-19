@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { addAgent, updateAgent, deleteAgent } from "../services/agentService";
+import { addAgent, deleteAgent } from "../services/agentService";
 
 const useAgentStore = create((set) => ({
   agents: [],
@@ -15,20 +15,7 @@ const useAgentStore = create((set) => ({
     }
   },
 
-  updateAgent: async (updatedAgent) => {
-    try {
-      const updated = await updateAgent(updatedAgent);
-      set((state) => ({
-        agents: state.agents.map((agent) =>
-          agent.id === updated.id ? updated : agent
-        ),
-      }));
-    } catch (error) {
-      console.error(error.message);
-    }
-  },
-
-  deleteAgent: async (id) => {
+ deleteAgent: async (id) => {
     try {
       await deleteAgent(id);
       set((state) => ({

@@ -26,15 +26,12 @@ const Button = ({
     `,
   };
 
-  // Determine icon color based on variant
   const buttonStyle = `${baseStyle} ${styles[variant]} ${className}`;
 
   return (
-    <div className="group">
-      <button type={type} onClick={onClick} className={buttonStyle}>
-        {title}
-      </button>
-    </div>
+    <button type={type} onClick={onClick} className={buttonStyle}>
+      {title}
+    </button>
   );
 };
 

@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from "react";
 import Selector from "../../components/common/Selector";
 import { fetchCities, fetchRegions } from "../../services/geographicalService";
+import useAgentStore from "../../stores/useAgentStore";
+import Button from "../../components/common/Button";
+import Input from "../../components/common/Input";
+import RadioButton from "../../components/common/RadioButton";
 
 export default function EstateCreate() {
   const [cities, setCities] = useState([]);
@@ -9,6 +13,9 @@ export default function EstateCreate() {
 
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedRegion, setSelectedRegion] = useState(null);
+  const [selectedAgent, setSelectedAgent] = useState(null);
+
+  const { agents, fetchAgents } = useAgentStore();
 
   useEffect(() => {
     const getCities = async () => {
@@ -31,6 +38,7 @@ export default function EstateCreate() {
     };
     getCities();
     getRegions();
+    fetchAgents();
   }, []);
 
   return (
@@ -47,6 +55,17 @@ export default function EstateCreate() {
         selectedOption={selectedRegion}
         onSelect={setSelectedRegion}
       />
+      <Selector
+        label="აგენტი"
+        options={agents.map((agent) => agent.name)}
+        selectedOption={selectedAgent}
+        onSelect={setSelectedAgent}
+      />
+
+      <div className="flex gap-[15px]">
+        <Button title="გაუქმება" variant="secondary" />
+        <Button title="დაამატე ლისტინგი" variant="primary" />
+      </div>
     </div>
   );
 }

@@ -7,15 +7,14 @@ const Button = ({
   className = "",
   type = "button",
 }) => {
-  const baseStyle =
-    "w-auto h-auto font-firago font-medium flex items-center justify-center gap-2";
+  const baseStyle = "w-auto h-auto font-firago font-medium";
 
   const styles = {
     primary: `
-      bg-primary rounded-[10px] py-[10px] px-[16px] leading-[19.2px] text-[16px] hover:bg-[#DF3014] text-white
+      bg-primary rounded-[10px] py-[10px] px-[16px] text-[16px] hover:bg-[#DF3014] text-white
     `,
     secondary: `
-      bg-white rounded-[10px] border border-primary py-[10px] px-[16px] leading-[19.2px] text-[16px] text-primary 
+      bg-white rounded-[10px] border border-primary py-[9px] px-[15px] text-[16px] text-primary 
       hover:bg-primary hover:text-white 
     `,
     remove: `

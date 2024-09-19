@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import DownArrow from "../Icons/DownArrow";
 import PlusCircle from "../Icons/PlusCircle";
+import CreateAgentModal from "../Modals/CreateAgent";
 
 export default function CustomSelector({
   label,
@@ -11,6 +12,10 @@ export default function CustomSelector({
   onSelect,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -24,7 +29,8 @@ export default function CustomSelector({
   };
 
   const handleDefaultOptionSelect = () => {
-    alert("Default option selected");
+    handleShow();
+    setIsOpen(false);
   };
 
   return (
@@ -72,6 +78,7 @@ export default function CustomSelector({
           </div>
         )}
       </div>
+      <CreateAgentModal showModal={showModal} handleClose={handleClose} />
     </div>
   );
 }

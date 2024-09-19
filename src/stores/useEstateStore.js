@@ -2,12 +2,13 @@ import { create } from "zustand";
 import {
   fetchEstates,
   addEstate,
-  updateEstate,
   deleteEstate,
+  fetchCurrentEstate,
 } from "../services/estateService";
 
 const useEstateStore = create((set) => ({
   estates: [],
+  currentEstate: null,
 
   fetchEstates: async () => {
     try {
@@ -18,24 +19,20 @@ const useEstateStore = create((set) => ({
     }
   },
 
-  addEstate: async (newEstate) => {
+  fetchEstateById: async (id) => {
     try {
-      const addedEstate = await addEstate(newEstate);
-      set((state) => ({
-        estates: [...state.estates, addedEstate],
-      }));
+      const estate = await fetchCurrentEstate(id);
+      set({ currentEstate: estate });
     } catch (error) {
       console.error(error.message);
     }
   },
 
-  updateEstate: async (updatedEstate) => {
+  addEstate: async (newEstate) => {
     try {
-      const updated = await updateEstate(updatedEstate);
+      const addedEstate = await addEstate(newEstate);
       set((state) => ({
-        estates: state.estates.map((estate) =>
-          estate.id === updated.id ? updated : estate
-        ),
+        estates: [...state.estates, addedEstate],
       }));
     } catch (error) {
       console.error(error.message);

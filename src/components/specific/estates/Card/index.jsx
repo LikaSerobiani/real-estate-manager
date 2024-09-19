@@ -10,6 +10,8 @@ import Bed from "../../../common/Icons/Bed";
 import Resize from "../../../common/Icons/Resize";
 import PostSign from "../../../common/Icons/PostSign";
 
+const LARI_SYMBOL = "\u20BE";
+
 export default function Card({
   id,
   image,
@@ -57,37 +59,31 @@ export default function Card({
           borderColor: "#DBDBDB",
         }}
       >
-        <div className="h-[60px] flex flex-col gap-[6px]">
+        <div className="flex flex-col gap-[6px]">
           <span className="font-bold leading-[33.6px] text-[28px] text-secondary h-[34px]">
-            {price} ₾
+            {price} {LARI_SYMBOL}
           </span>
 
-          <div className="flex gap-1 h-5">
+          <div className="flex gap-1 items-center">
             <LocationMarker />
-            <span className="text-secondary text-opacity-70 text-[16px] font-normal leading-[19.2px]">
+            <span className="text-secondary text-opacity-70 text-[16px] font-normal">
               {address}
             </span>
           </div>
         </div>
-        <div className="h-6 flex gap-[32px] text-secondary text-opacity-70 items-center">
-          <div className="h-[24px] flex gap-[5px] items-center">
+        <div className="flex gap-[32px] text-secondary text-opacity-70 items-center">
+          <div className="flex gap-[5px] items-center">
             <Bed />
-            <span className="h-[19px] font-normal text-[16px] leading-[19.2px]">
-              {bedrooms}
-            </span>
+            <span className="font-normal text-[16px]">{bedrooms}</span>
           </div>
-          <div className="h-[19px] flex items-center gap-[5px]">
+          <div className="flex items-center gap-[5px]">
             <Resize />
             <div className="flex gap-[1px]">
-              <span className="font-normal text-[15px] leading-[19.2px]">
-                {area} მ
-              </span>
-              <span className="w-[5px] h-3 text-[10px] leading-3 font-normal">
-                2
-              </span>
+              <span className="font-normal text-[15px]">{area} მ</span>
+              <span className="text-[10px] leading-3 font-normal">2</span>
             </div>
           </div>
-          <div className="h-[19px] flex items-center gap-[5px]">
+          <div className="flex items-center gap-[5px]">
             <PostSign />
             <span className="text-[16px] font-normal">{zip_code}</span>
           </div>

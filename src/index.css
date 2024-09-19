@@ -7,10 +7,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-.container {
-  max-width: 1596px;
-  width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-}

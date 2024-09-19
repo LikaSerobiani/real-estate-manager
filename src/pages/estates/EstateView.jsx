@@ -86,7 +86,7 @@ export default function EstateView() {
   return (
     <>
       {/* Estate details */}
-      <button onClick={() => navigate(-1)} className="mt-[64px]">
+      <button onClick={() => navigate(-1)}>
         <LeftArrow />
       </button>
       <div className="flex gap-[68px] w-full mt-[30px]">

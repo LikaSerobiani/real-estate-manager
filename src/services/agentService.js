@@ -13,10 +13,11 @@ export const addAgent = async (agent) => {
   }
 };
 
-export const deleteAgent = async (id) => {
+export const fetchAgents = async () => {
   try {
-    await axios.delete(`/agents/${id}`);
+    const response = await axios.get("/agents");
+    return response.data;
   } catch (error) {
-    throw new Error("Error deleting agent");
+    throw new Error("Error fetching agents");
   }
 };

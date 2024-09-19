@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { addAgent, deleteAgent } from "../services/agentService";
+import { addAgent, fetchAgents } from "../services/agentService";
 
 const useAgentStore = create((set) => ({
   agents: [],
@@ -15,12 +15,10 @@ const useAgentStore = create((set) => ({
     }
   },
 
- deleteAgent: async (id) => {
+  fetchAgents: async () => {
     try {
-      await deleteAgent(id);
-      set((state) => ({
-        agents: state.agents.filter((agent) => agent.id !== id),
-      }));
+      const agentsFromApi = await fetchAgents();
+      set({ agents: agentsFromApi });
     } catch (error) {
       console.error(error.message);
     }

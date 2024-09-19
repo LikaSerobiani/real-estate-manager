@@ -1,9 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../components/specific/estates/Card";
+import Loading from "../../components/common/Loading";
 
 export default function EstateListing({ estates }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (estates && estates.length > 0) {
+      setLoading(false);
+    }
+  }, [estates]);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div>
       <div className="flex flex-wrap gap-5">

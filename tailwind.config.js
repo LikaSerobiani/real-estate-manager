@@ -15,6 +15,7 @@ export default {
         darkGray: "#676E76",
         border: "#DBDBDB",
         success: "#45A849",
+        error: "#F93B1D",
       },
     },
   },

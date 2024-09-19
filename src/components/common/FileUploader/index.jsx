@@ -1,25 +1,28 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import PropTypes from "prop-types";
 import PlusCircle from "../Icons/PlusCircle";
 import TrashCircle from "../Icons/TrashCircle";
+import ExclamationMark from "../Icons/ExclamationMark";
 
-const FileUploader = ({ onFileChange }) => {
+const FileUploader = ({ onFileChange, error }) => {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       setFile(URL.createObjectURL(selectedFile));
-      if (onFileChange) {
-        onFileChange(selectedFile);
-      }
+      onFileChange(selectedFile);
     }
   };
 
   const handleRemoveImage = () => {
     setFile(null);
-    if (onFileChange) {
-      onFileChange(null);
+    onFileChange(null);
+
+    const fileInput = document.getElementById("fileInput");
+    if (fileInput) {
+      fileInput.value = null;
     }
   };
 
@@ -28,7 +31,7 @@ const FileUploader = ({ onFileChange }) => {
       <label className="font-firago font-bold text-[14px] leading-[16.8px] text-secondary">
         ატვირთეთ ფოტო
       </label>
-      <div className="relative w-[788px] h-[120px] rounded-[8px] border border-dashed border-[#2D3648] bg-white">
+      <div className="relative w-[788px] h-[120px] rounded-[8px] border border-dashed border-[#2D3648] error bg-white">
         <input
           type="file"
           id="fileInput"
@@ -40,7 +43,7 @@ const FileUploader = ({ onFileChange }) => {
           className="absolute inset-0 flex items-center justify-center cursor-pointer"
         >
           {!file ? (
-            <PlusCircle className="text-gray-500 text-3xl" />
+            <PlusCircle />
           ) : (
             <img
               src={file}
@@ -58,13 +61,18 @@ const FileUploader = ({ onFileChange }) => {
           </div>
         )}
       </div>
+      {error && (
+        <div className="flex items-center gap-1 text-[14px] font-normal text-error">
+          <ExclamationMark color="#F93B1D" />
+          <span>{error}</span>
+        </div>
+      )}
     </div>
   );
 };
 
 FileUploader.propTypes = {
   onFileChange: PropTypes.func.isRequired,
-  className: PropTypes.string,
 };
 
 export default FileUploader;

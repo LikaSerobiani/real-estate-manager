@@ -22,7 +22,7 @@ const LARI_SYMBOL = "\u20BE";
 
 export default function EstateView() {
   const { id } = useParams();
-  
+
   const navigate = useNavigate();
   const {
     currentEstate,
@@ -55,7 +55,7 @@ export default function EstateView() {
       }
     }
   }, [currentEstate, estates]);
-  
+
   if (!currentEstate) {
     return <Loading />;
   }
@@ -196,7 +196,7 @@ export default function EstateView() {
       </div>
 
       {/* Estates Slider */}
-      <h1 className="text-[32px] text-secondary font-medium leading-[38.4px] mb-[52px]">
+      <h1 className="text-[32px] text-secondary font-medium leading-[38.4px] my-[52px]">
         ბინები მსგავს ლოკაციაზე
       </h1>
       {filteredEstates.length > 0 ? (

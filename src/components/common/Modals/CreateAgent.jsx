@@ -27,7 +27,7 @@ export default function CreateAgent({ showModal, handleClose }) {
 
   return (
     <>
-      <Modal isModalOpen={showModal} onClose={handleClose}>
+      <Modal isModalOpen={showModal} onClose={handleClose} padding="87px 105px">
         <div className="flex flex-col gap-[22px]">
           <h2 className="font-firago font-bold text-[32px] leading-[38.4px] text-secondary text-center">
             აგენტის დამატება

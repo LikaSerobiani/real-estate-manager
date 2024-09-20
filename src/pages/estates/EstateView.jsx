@@ -17,6 +17,9 @@ import Button from "../../components/common/Button";
 import Tag from "../../components/specific/estates/Tag";
 import Loading from "../../components/common/Loading";
 import Carousel from "../../components/specific/estates/Carousel";
+import DeleteModal from "../../components/common/Modals/Delete";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LARI_SYMBOL = "\u20BE";
 
@@ -31,7 +34,13 @@ export default function EstateView() {
     estates,
     fetchEstates,
   } = useEstateStore();
+
   const [filteredEstates, setFilteredEstates] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
   useEffect(() => {
     if (id) {
@@ -49,7 +58,9 @@ export default function EstateView() {
       const regionName = currentEstate.city?.region?.name;
       if (regionName) {
         const filtered = estates.filter(
-          (estate) => estate.city?.region?.name === regionName
+          (estate) =>
+            estate.city?.region?.name === regionName &&
+            estate.id !== currentEstate.id
         );
         setFilteredEstates(filtered);
       }
@@ -63,7 +74,10 @@ export default function EstateView() {
   const handleDelete = async () => {
     try {
       await deleteEstate(id);
-      navigate(-1);
+      toast.success("ლისტინგი წარმატებით წაიშალა!", {
+        autoClose: 1000,
+        onClose: () => navigate("/"),
+      });
     } catch (error) {
       console.error("Error deleting estate:", error);
     }
@@ -85,6 +99,14 @@ export default function EstateView() {
 
   return (
     <>
+      {/* modal */}
+      <DeleteModal
+        showModal={showModal}
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+      />
+      <ToastContainer />
+
       {/* Estate details */}
       <button onClick={() => navigate(-1)}>
         <LeftArrow />
@@ -102,7 +124,7 @@ export default function EstateView() {
               className="absolute top-[41px] left-[41px]"
               style={{ zIndex: 10 }}
             >
-              <Tag is_rental={is_rental} />
+              <Tag is_rental={is_rental === 1} />
             </div>
           </div>
           <p className="font-firago text-[16px] leading-[19.2px] font-normal text-lightGray">
@@ -110,7 +132,7 @@ export default function EstateView() {
           </p>
         </div>
 
-        <div className="w-[503px] h-[714px] pt-[30px] flex flex-col gap-[40px]">
+        <div className="pt-[30px] flex flex-col gap-[40px]">
           {/* page info */}
           <div className="flex flex-col gap-[24px]">
             <div>
@@ -188,22 +210,23 @@ export default function EstateView() {
           </div>
           {/* Button */}
           <Button
-            onClick={handleDelete}
+            onClick={handleShow}
             variant="remove"
             title="ლისტინგის წაშლა"
+            className="w-[150px]"
           />
         </div>
       </div>
 
       {/* Estates Slider */}
-      <h1 className="text-[32px] text-secondary font-medium leading-[38.4px] my-[52px]">
-        ბინები მსგავს ლოკაციაზე
-      </h1>
       {filteredEstates.length > 0 ? (
-        <Carousel estates={filteredEstates} />
-      ) : (
-        <p>No estates available</p>
-      )}
+        <>
+          <h1 className="text-[32px] text-secondary font-medium leading-[38.4px] my-[52px]">
+            ბინები მსგავს ლოკაციაზე
+          </h1>
+          <Carousel estates={filteredEstates} />
+        </>
+      ) : null}
     </>
   );
 }

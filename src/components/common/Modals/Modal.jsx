@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
-// import CloseIcon from "../Icons/Close";
+import CloseIcon from "../Icons/Close";
 import "../../../styles/modal.css";
 
-const Modal = ({ isModalOpen, children, onClose }) => {
+const Modal = ({ isModalOpen, children, onClose, padding, icon }) => {
   if (isModalOpen !== true) {
     return null;
   }
@@ -17,12 +17,12 @@ const Modal = ({ isModalOpen, children, onClose }) => {
 
   return (
     <section className="modal" onClick={handleBackgroundClick}>
-      <article className="modal-content">
-        {/* <div className="flex w-full justify-end">
-          <div className="cursor-pointer" onClick={onClose}>
+      <article className="modal-content" style={{ padding }}>
+        {icon && (
+          <div className="close-icon" onClick={onClose}>
             <CloseIcon />
           </div>
-        </div> */}
+        )}
         <div className="w-full h-full">{children}</div>
       </article>
     </section>

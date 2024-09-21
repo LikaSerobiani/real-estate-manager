@@ -213,7 +213,6 @@ export default function EstateView() {
             onClick={handleShow}
             variant="remove"
             title="ლისტინგის წაშლა"
-            className="w-[150px]"
           />
         </div>
       </div>
@@ -221,7 +220,7 @@ export default function EstateView() {
       {/* Estates Slider */}
       {filteredEstates.length > 0 ? (
         <>
-          <h1 className="text-[32px] text-secondary font-medium leading-[38.4px] my-[52px]">
+          <h1 className="text-[32px] text-secondary font-firago font-medium leading-[38.4px] my-[52px]">
             ბინები მსგავს ლოკაციაზე
           </h1>
           <Carousel estates={filteredEstates} />

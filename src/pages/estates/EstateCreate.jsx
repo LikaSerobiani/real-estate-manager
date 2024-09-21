@@ -108,9 +108,10 @@ export default function EstateCreate() {
           setFieldValue,
         }) => (
           <Form className="flex flex-col gap-[80px]">
-            {/* garigebis tipi */}
             <div className="flex flex-col gap-2">
-              <h3>გარიგების ტიპი</h3>
+              <p className="font-helvetica text-[16px] uppercase leading-[19.54px]">
+                გარიგების ტიპი
+              </p>
               <div className="flex gap-12">
                 {Object.entries(PropertyTypes).map(([key, value]) => (
                   <RadioButton
@@ -126,9 +127,11 @@ export default function EstateCreate() {
                 ))}
               </div>
             </div>
-            {/* mdebareoba */}
+
             <div className="flex flex-col gap-[22px]">
-              <h3>მდებარეობა</h3>
+              <p className="font-helvetica text-[16px] uppercase leading-[19.54px]">
+                მდებარეობა
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[22px]">
                 <Input
                   label="მისამართი"
@@ -186,9 +189,11 @@ export default function EstateCreate() {
                 )}
               </div>
             </div>
-            {/* დეტალები */}
+
             <div className="flex flex-col gap-[22px]">
-              <p>ბინის დეტალები</p>
+              <p className="font-helvetica text-[16px] uppercase leading-[19.54px]">
+                ბინის დეტალები
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[22px]">
                 <Input
                   label="ფასი"
@@ -241,9 +246,11 @@ export default function EstateCreate() {
                 error={touched.image && errors.image}
               />
             </div>
-            {/* აგენტი */}
+
             <div className="flex flex-col gap-[15px]">
-              <p>აგენტი</p>
+              <p className="font-helvetica text-[16px] uppercase leading-[19.54px]">
+                აგენტი
+              </p>
               <Selector
                 label="აგენტი"
                 name="agent_id"

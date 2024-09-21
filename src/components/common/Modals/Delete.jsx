@@ -12,7 +12,7 @@ export default function Delete({ showModal, handleClose, handleDelete }) {
       padding="58px 107px"
     >
       <div className="flex justify-center flex-col items-center gap-[35px]">
-        <span className="text-[20px] leading-[24px] text-secondary font-normal">
+        <span className="text-[20px] leading-[24px] text-secondary font-normal font-firago">
           გსურთ წაშალოთ ლისტინგი?
         </span>
         <div className="flex gap-[15px] ">

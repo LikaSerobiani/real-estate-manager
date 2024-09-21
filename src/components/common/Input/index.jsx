@@ -42,7 +42,7 @@ export default function Input({
         }`}
       />
 
-      <div className="text-[14px] font-normal">
+      <div className="text-[14px] font-normal font-firago">
         {!isValid && !hasError && !touched && (
           <div className="flex items-center gap-1">
             <CheckIcon color="#021526" />

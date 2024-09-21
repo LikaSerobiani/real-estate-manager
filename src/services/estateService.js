@@ -20,7 +20,11 @@ export const fetchCurrentEstate = async (id) => {
 
 export const addEstate = async (estate) => {
   try {
-    const response = await axios.post("/real-estates", estate);
+    const response = await axios.post("/real-estates", estate, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return response.data;
   } catch (error) {
     throw new Error("Error adding estate");

@@ -6,6 +6,7 @@ import EstateListing from "../pages/estates/EstateListing";
 import useEstateStore from "../stores/useEstateStore";
 import Button from "../components/common/Button";
 import CreateAgentModal from "../components/common/Modals/CreateAgent";
+import Plus from "../components/common/Icons/Plus";
 
 export default function Home() {
   const { estates, fetchEstates } = useEstateStore();
@@ -31,12 +32,16 @@ export default function Home() {
           title="ლისტინგის დამატება"
           variant="primary"
           onClick={handleAddEstate}
-        />
+        >
+          <Plus color="#FFFFFF" />
+        </Button>
         <Button
           title="აგენტის დამატება"
           variant="secondary"
           onClick={handleShow}
-        />
+        >
+          <Plus color="#F93B1D" />
+        </Button>
       </div>
       <EstateListing estates={estates} />
       <CreateAgentModal showModal={showModal} handleClose={handleClose} />

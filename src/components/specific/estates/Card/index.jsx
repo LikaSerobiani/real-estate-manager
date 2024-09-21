@@ -48,7 +48,7 @@ export default function Card({
           alt={title}
           className="h-[307px] w-full rounded-t-[14px] rounded-b-none"
         />
-        <div className="absolute top-[23px] left-[23px]" style={{ zIndex: 10 }}>
+        <div className="absolute top-[23px] left-[23px]" style={{ zIndex: 1 }}>
           <Tag is_rental={is_rental} />
         </div>
       </div>

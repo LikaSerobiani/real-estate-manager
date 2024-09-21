@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import useEstateStore from "../../stores/useEstateStore";
@@ -101,7 +101,6 @@ export default function EstateView() {
 
   return (
     <>
-      {/* modal */}
       <DeleteModal
         showModal={showModal}
         handleClose={handleClose}
@@ -112,12 +111,11 @@ export default function EstateView() {
         showModal={showSuccessModal}
         handleClose={() => setShowSuccessModal(false)}
       />
-      {/* Estate details */}
+
       <button onClick={() => navigate(-1)}>
         <LeftArrow />
       </button>
       <div className="flex gap-[68px] w-full mt-[30px]">
-        {/* image */}
         <div className="flex flex-col items-end gap-[11px]">
           <div className="relative">
             <img
@@ -127,7 +125,7 @@ export default function EstateView() {
             />
             <div
               className="absolute top-[41px] left-[41px]"
-              style={{ zIndex: 10 }}
+              style={{ zIndex: 1 }}
             >
               <Tag is_rental={is_rental === 1} />
             </div>
@@ -138,7 +136,6 @@ export default function EstateView() {
         </div>
 
         <div className="pt-[30px] flex flex-col gap-[40px]">
-          {/* page info */}
           <div className="flex flex-col gap-[24px]">
             <div>
               <span className="font-bold font-firago text-[48px] leading-[57.6px] text-secondary">
@@ -177,13 +174,11 @@ export default function EstateView() {
               </div>
             </div>
           </div>
-          {/* Page description */}
           <div>
             <span className="font-firago text-[16px] leading-[26px] font-normal text-lightGray">
               {description}
             </span>
           </div>
-          {/* Agent */}
           <div className="w-[503px] h-[174px] border border-border rounded-lg py-[24px] px-[20px] flex flex-col gap-[16px]">
             <div className="flex items-center gap-2">
               <img
@@ -213,7 +208,6 @@ export default function EstateView() {
               </div>
             </div>
           </div>
-          {/* Button */}
           <Button
             onClick={handleShow}
             variant="remove"
@@ -222,7 +216,6 @@ export default function EstateView() {
         </div>
       </div>
 
-      {/* Estates Slider */}
       {filteredEstates.length > 0 ? (
         <>
           <h1 className="text-[32px] text-secondary font-firago font-medium leading-[38.4px] my-[52px]">

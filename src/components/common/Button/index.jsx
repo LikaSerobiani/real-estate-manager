@@ -12,15 +12,14 @@ const Button = ({
 
   const styles = {
     primary: `
-      bg-primary rounded-[10px] py-[10px] px-[16px] text-[16px] hover:bg-[#DF3014] text-white
+      bg-primary rounded-[10px] py-[14px] px-[16px] text-[16px] hover:bg-[#DF3014] text-white
     `,
     secondary: `
-      bg-white rounded-[10px] border border-primary py-[9px] px-[15px] text-[16px] text-primary 
-      hover:bg-primary hover:text-white
+     bg-white rounded-[10px] border border-primary py-[13px] px-[15px] text-[16px] text-primary 
+      hover:bg-primary hover:text-white 
     `,
     remove: `
-      bg-white text-lightGray rounded-[8px] border border-lightGray p-[10px] leading-[16.8px] text-[14px] hover:bg-lightGray hover:text-white
-    `,
+ bg-white text-lightGray rounded-[8px] border border-lightGray p-[14px] leading-[16.8px] text-[14px] hover:bg-lightGray hover:text-white    `,
     select: `
       bg-primary text-white rounded-[8px] py-[8px] px-[14px] leading-[16.8px] text-[14px] hover:bg-[#DF3014]
     `,

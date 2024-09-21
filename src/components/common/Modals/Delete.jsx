@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 import Modal from "./Modal";
 import Button from "../Button";
 

@@ -6,7 +6,7 @@ export default function Close() {
 
   return (
     <div
-      className="p-2 cursor-pointer"
+      className="cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

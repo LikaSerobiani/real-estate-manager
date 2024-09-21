@@ -53,7 +53,7 @@ export default function CreateAgent({ showModal, handleClose }) {
               handleBlur,
               setFieldValue,
             }) => (
-              <Form className="flex items-end flex-col gap-[28px]">
+              <Form className="flex flex-col gap-[28px]">
                 <div className="flex gap-[22px]">
                   <Input
                     label="სახელი"
@@ -108,7 +108,7 @@ export default function CreateAgent({ showModal, handleClose }) {
                   onFileChange={(file) => setFieldValue("avatar", file)}
                   error={touched.avatar && errors.avatar}
                 />
-                <div className="flex gap-[15px] ">
+                <div className="flex justify-end gap-[15px]">
                   <Button
                     title="გაუქმება"
                     variant="secondary"

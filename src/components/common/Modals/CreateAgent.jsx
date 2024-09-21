@@ -6,7 +6,7 @@ import Modal from "../Modals/Modal";
 import FileUploader from "../FileUploader";
 import Button from "../Button";
 import useAgentStore from "../../../stores/useAgentStore";
-import { validationSchema } from "./../../../validation/validationSchema";
+import { agentValidationSchema } from "../../../validation/agentValidationSchema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -40,7 +40,7 @@ export default function CreateAgent({ showModal, handleClose }) {
               phone: "",
               avatar: null,
             }}
-            validationSchema={validationSchema}
+            validationSchema={agentValidationSchema}
             onSubmit={handleSubmit}
             validateOnChange={true}
             validateOnBlur={true}

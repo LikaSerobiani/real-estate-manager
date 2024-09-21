@@ -208,11 +208,13 @@ export default function EstateView() {
               </div>
             </div>
           </div>
-          <Button
-            onClick={handleShow}
-            variant="remove"
-            title="ლისტინგის წაშლა"
-          />
+          <div className="flex items-center w-full max-w-[160px]">
+            <Button
+              onClick={handleShow}
+              variant="remove"
+              title="ლისტინგის წაშლა"
+            />
+          </div>
         </div>
       </div>
 

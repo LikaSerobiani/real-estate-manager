@@ -7,7 +7,7 @@ const Button = ({
   className = "",
   type = "button",
 }) => {
-  const baseStyle = "w-auto h-auto font-firago font-medium";
+  const baseStyle = "font-firago font-medium";
 
   const styles = {
     primary: `

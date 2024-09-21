@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import { listingValidationSchema } from "../../validation/listingValidationSchema";
 import { useNavigate } from "react-router-dom";
-
 import Selector from "../../components/common/Selector";
 import { fetchCities, fetchRegions } from "../../services/geographicalService";
 import useEstateStore from "../../stores/useEstateStore";
@@ -30,7 +28,6 @@ export default function EstateCreate() {
 
   const { agents, fetchAgents } = useAgentStore();
   const { addEstate } = useEstateStore();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,8 +76,8 @@ export default function EstateCreate() {
   };
 
   return (
-    <div>
-      <h2 className="font-firago font-bold text-[32px] leading-[38.4px] text-secondary text-center">
+    <div className="flex flex-col items-center">
+      <h2 className="font-firago font-bold text-[32px] leading-[38.4px] text-secondary text-center mb-[61px]">
         ლისტინგის დამატება
       </h2>
       <Formik
@@ -110,122 +107,113 @@ export default function EstateCreate() {
           handleBlur,
           setFieldValue,
         }) => (
-          <Form className="flex items-end flex-col gap-[28px]">
-            <div className="flex gap-4 mt-4">
-              {Object.entries(PropertyTypes).map(([key, value]) => (
-                <RadioButton
-                  key={key}
-                  name="propertyType"
-                  value={value}
-                  checked={propertyType === value}
-                  onChange={() =>
-                    handlePropertyTypeChange(value, setFieldValue)
-                  }
-                  label={key === "RENTAL" ? "ქირავდება" : "იყიდება"}
+          <Form className="flex flex-col gap-[80px]">
+            {/* garigebis tipi */}
+            <div className="flex flex-col gap-2">
+              <h3>გარიგების ტიპი</h3>
+              <div className="flex gap-12">
+                {Object.entries(PropertyTypes).map(([key, value]) => (
+                  <RadioButton
+                    key={key}
+                    name="propertyType"
+                    value={value}
+                    checked={propertyType === value}
+                    onChange={() =>
+                      handlePropertyTypeChange(value, setFieldValue)
+                    }
+                    label={key === "RENTAL" ? "ქირავდება" : "იყიდება"}
+                  />
+                ))}
+              </div>
+            </div>
+            {/* mdebareoba */}
+            <div className="flex flex-col gap-[22px]">
+              <h3>მდებარეობა</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-[22px]">
+                <Input
+                  label="მისამართი"
+                  id="address"
+                  name="address"
+                  value={values.address}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.address}
+                  touched={touched.address}
+                  initialMessage="მინიმუმ ორი სიმბოლო"
                 />
-              ))}
+                <Input
+                  label="საფოსტო ინდექსი"
+                  id="zip_code"
+                  name="zip_code"
+                  value={values.zip_code}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.zip_code}
+                  touched={touched.zip_code}
+                  initialMessage="მხოლოდ რიცხვები"
+                />
+                <Selector
+                  label="რეგიონი"
+                  name="region_id"
+                  id="region_id"
+                  options={regions.map((region) => region.name)}
+                  selectedOption={selectedRegion?.name}
+                  onSelect={(name) => {
+                    const selected = regions.find(
+                      (region) => region.name === name
+                    );
+                    setSelectedRegion(selected);
+                    setFieldValue("region_id", selected?.id);
+                  }}
+                  error={touched.region_id && errors.region_id}
+                />
+                {selectedRegion && (
+                  <Selector
+                    label="ქალაქი"
+                    name="city_id"
+                    id="city_id"
+                    options={cities.map((city) => city.name)}
+                    selectedOption={selectedCity?.name}
+                    onSelect={(name) => {
+                      const selected = cities.find(
+                        (city) => city.name === name
+                      );
+                      setSelectedCity(selected);
+                      setFieldValue("city_id", selected?.id);
+                    }}
+                    error={touched.city_id && errors.city_id}
+                  />
+                )}
+              </div>
             </div>
-            <Selector
-              label="რეგიონი"
-              name="region_id"
-              id="region_id"
-              options={regions.map((region) => region.name)}
-              selectedOption={selectedRegion?.name}
-              onSelect={(name) => {
-                const selected = regions.find((region) => region.name === name);
-                setSelectedRegion(selected);
-                setFieldValue("region_id", selected?.id);
-              }}
-              error={touched.region_id && errors.region_id}
-            />
-            {selectedRegion && (
-              <Selector
-                label="ქალაქი"
-                name="city_id"
-                id="city_id"
-                options={cities.map((city) => city.name)}
-                selectedOption={selectedCity?.name}
-                onSelect={(name) => {
-                  const selected = cities.find((city) => city.name === name);
-                  setSelectedCity(selected);
-                  setFieldValue("city_id", selected?.id);
-                }}
-                error={touched.city_id && errors.city_id}
-              />
-            )}
-            <Selector
-              label="აგენტი"
-              name="agent_id"
-              id="agent_id"
-              options={agents.map((agent) => agent.name)}
-              selectedOption={selectedAgent ? selectedAgent.name : ""}
-              onSelect={(name) => {
-                const selected = agents.find((agent) => agent.name === name);
-                setSelectedAgent(selected);
-                setFieldValue("agent_id", selected?.id);
-              }}
-              error={touched.agent_id && errors.agent_id}
-            />
-
-            <TextArea
-              label="აღწერა"
-              id="description"
-              name="description"
-              value={values.description}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.description}
-              touched={touched.description}
-              initialMessage="მინიმუმ 5 სიტყვა"
-            />
-            <div className="flex gap-[22px]">
-              <Input
-                label="მისამართი"
-                id="address"
-                name="address"
-                value={values.address}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.address}
-                touched={touched.address}
-                initialMessage="მინიმუმ ორი სიმბოლო"
-              />
-              <Input
-                label="საფოსტო ინდექსი"
-                id="zip_code"
-                name="zip_code"
-                value={values.zip_code}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.zip_code}
-                touched={touched.zip_code}
-                initialMessage="მხოლოდ რიცხვები"
-              />
-              <Input
-                label="ფასი"
-                id="price"
-                name="price"
-                value={values.price}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.price}
-                touched={touched.price}
-                initialMessage="მხოლოდ რიცხვები"
-              />
-            </div>
-            <div className="flex gap-[22px]">
-              <Input
-                label="ფართობი"
-                id="area"
-                name="area"
-                type="area"
-                value={values.area}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.area}
-                touched={touched.area}
-                initialMessage="მხოლოდ რიცხვები"
-              />
+            {/* დეტალები */}
+            <div className="flex flex-col gap-[22px]">
+              <p>ბინის დეტალები</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-[22px]">
+                <Input
+                  label="ფასი"
+                  id="price"
+                  name="price"
+                  value={values.price}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.price}
+                  touched={touched.price}
+                  initialMessage="მხოლოდ რიცხვები"
+                />
+                <Input
+                  label="ფართობი"
+                  id="area"
+                  name="area"
+                  type="area"
+                  value={values.area}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.area}
+                  touched={touched.area}
+                  initialMessage="მხოლოდ რიცხვები"
+                />
+              </div>
               <Input
                 label="საძინებლების რაოდენობა"
                 id="bedrooms"
@@ -237,12 +225,40 @@ export default function EstateCreate() {
                 touched={touched.bedrooms}
                 initialMessage="მხოლოდ რიცხვები"
               />
+              <TextArea
+                label="აღწერა"
+                id="description"
+                name="description"
+                value={values.description}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.description}
+                touched={touched.description}
+                initialMessage="მინიმუმ 5 სიტყვა"
+              />
+              <FileUploader
+                onFileChange={(file) => setFieldValue("image", file)}
+                error={touched.image && errors.image}
+              />
             </div>
-            <FileUploader
-              onFileChange={(file) => setFieldValue("image", file)}
-              error={touched.image && errors.image}
-            />
-            <div className="flex gap-4 mt-4">
+            {/* აგენტი */}
+            <div className="flex flex-col gap-[15px]">
+              <p>აგენტი</p>
+              <Selector
+                label="აგენტი"
+                name="agent_id"
+                id="agent_id"
+                options={agents.map((agent) => agent.name)}
+                selectedOption={selectedAgent ? selectedAgent.name : ""}
+                onSelect={(name) => {
+                  const selected = agents.find((agent) => agent.name === name);
+                  setSelectedAgent(selected);
+                  setFieldValue("agent_id", selected?.id);
+                }}
+                error={touched.agent_id && errors.agent_id}
+              />
+            </div>
+            <div className="flex justify-end gap-4 mt-4">
               <Button
                 title="გაუქმება"
                 variant="secondary"

@@ -64,7 +64,7 @@ export default function CreateAgent({ showModal, handleClose }) {
                     onBlur={handleBlur}
                     error={errors.name}
                     touched={touched.name}
-                    initialMessage="სახელი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს"
+                    initialMessage="მინიმუმ ორი სიმბოლო"
                   />
                   <Input
                     label="გვარი"
@@ -75,7 +75,7 @@ export default function CreateAgent({ showModal, handleClose }) {
                     onBlur={handleBlur}
                     error={errors.surname}
                     touched={touched.surname}
-                    initialMessage="გვარი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს"
+                    initialMessage="მინიმუმ ორი სიმბოლო"
                   />
                 </div>
                 <div className="flex gap-[22px]">

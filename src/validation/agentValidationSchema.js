@@ -3,10 +3,10 @@ import * as Yup from "yup";
 export const agentValidationSchema = Yup.object().shape({
   name: Yup.string()
     .required("სახელი სავალდებულოა")
-    .min(2, "სახელი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს"),
+    .min(2, "მინიმუმ ორი სიმბოლო"),
   surname: Yup.string()
     .required("გვარი სავალდებულოა")
-    .min(2, "გვარი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს"),
+    .min(2, "მინიმუმ ორი სიმბოლო"),
   email: Yup.string()
     .required("ელ-ფოსტა სავალდებულოა")
     .email("ჩაწერეთ ვალიდური მონაცემები")

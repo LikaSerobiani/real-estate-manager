@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        firago: ["Firago", "sans-serif"],
+        firago: ["FiraGO", "sans-serif"],
+        helvetica: ["Helvetica Neue", "sans-serif"],
       },
       colors: {
         primary: "#F93B1D",

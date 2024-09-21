@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Formik, Form } from "formik";
 import Input from "../Input";
 import Modal from "../Modals/Modal";

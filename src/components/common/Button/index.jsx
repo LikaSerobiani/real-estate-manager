@@ -16,7 +16,7 @@ const Button = ({
     `,
     secondary: `
      bg-white rounded-[10px] border border-primary py-[13px] px-[15px] text-[16px] text-primary 
-      hover:bg-primary hover:text-white 
+      hover:bg-primary hover:text-white
     `,
     remove: `
  bg-white text-lightGray rounded-[8px] border border-lightGray p-[14px] leading-[16.8px] text-[14px] hover:bg-lightGray hover:text-white    `,

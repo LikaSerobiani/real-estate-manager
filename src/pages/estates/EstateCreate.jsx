@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import { listingValidationSchema } from "../../validation/listingValidationSchema";
+import { useNavigate } from "react-router-dom";
 
 import Selector from "../../components/common/Selector";
 import { fetchCities, fetchRegions } from "../../services/geographicalService";
@@ -29,6 +30,8 @@ export default function EstateCreate() {
 
   const { agents, fetchAgents } = useAgentStore();
   const { addEstate } = useEstateStore();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -240,7 +243,11 @@ export default function EstateCreate() {
               error={touched.image && errors.image}
             />
             <div className="flex gap-4 mt-4">
-              <Button title="გაუქმება" variant="secondary" />
+              <Button
+                title="გაუქმება"
+                variant="secondary"
+                onClick={() => navigate("/")}
+              />
               <Button
                 title="დაამატე ლისტინგი"
                 variant="primary"

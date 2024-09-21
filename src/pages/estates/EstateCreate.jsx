@@ -12,6 +12,7 @@ const PropertyTypes = {
 
 export default function EstateCreate() {
   const [cities, setCities] = useState([]);
+  const [allCities, setAllCities] = useState([]);
   const [regions, setRegions] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedRegion, setSelectedRegion] = useState(null);
@@ -27,8 +28,8 @@ export default function EstateCreate() {
           fetchCities(),
           fetchRegions(),
         ]);
-        setCities(cityData.map((city) => city.name));
-        setRegions(regionData.map((region) => region.name));
+        setAllCities(cityData);
+        setRegions(regionData);
         fetchAgents();
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -37,6 +38,18 @@ export default function EstateCreate() {
 
     fetchData();
   }, [fetchAgents]);
+
+  useEffect(() => {
+    if (selectedRegion) {
+      const filteredCities = allCities.filter(
+        (city) => city.region_id === selectedRegion.id
+      );
+      setCities(filteredCities);
+      setSelectedCity(null);
+    } else {
+      setCities([]);
+    }
+  }, [selectedRegion, allCities]);
 
   const handlePropertyTypeChange = (value) => {
     setPropertyType(value);
@@ -47,17 +60,23 @@ export default function EstateCreate() {
   return (
     <div>
       <Selector
-        label="ქალაქი"
-        options={cities}
-        selectedOption={selectedCity}
-        onSelect={setSelectedCity}
-      />
-      <Selector
         label="რეგიონი"
-        options={regions}
-        selectedOption={selectedRegion}
-        onSelect={setSelectedRegion}
+        options={regions.map((region) => region.name)}
+        selectedOption={selectedRegion?.name}
+        onSelect={(name) =>
+          setSelectedRegion(regions.find((region) => region.name === name))
+        }
       />
+      {selectedRegion && (
+        <Selector
+          label="ქალაქი"
+          options={cities.map((city) => city.name)}
+          selectedOption={selectedCity?.name}
+          onSelect={(name) =>
+            setSelectedCity(cities.find((city) => city.name === name))
+          }
+        />
+      )}
       <Selector
         label="აგენტი"
         options={agents.map((agent) => agent.name)}

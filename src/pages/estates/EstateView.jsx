@@ -18,8 +18,7 @@ import Tag from "../../components/specific/estates/Tag";
 import Loading from "../../components/common/Loading";
 import Carousel from "../../components/specific/estates/Carousel";
 import DeleteModal from "../../components/common/Modals/Delete";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import SuccessModal from "../../components/common/Modals/Success";
 
 const LARI_SYMBOL = "\u20BE";
 
@@ -38,6 +37,7 @@ export default function EstateView() {
   const [filteredEstates, setFilteredEstates] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -74,10 +74,12 @@ export default function EstateView() {
   const handleDelete = async () => {
     try {
       await deleteEstate(id);
-      toast.success("ლისტინგი წარმატებით წაიშალა!", {
-        autoClose: 1000,
-        onClose: () => navigate("/"),
-      });
+
+      setShowSuccessModal(true);
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.error("Error deleting estate:", error);
     }
@@ -105,8 +107,11 @@ export default function EstateView() {
         handleClose={handleClose}
         handleDelete={handleDelete}
       />
-      <ToastContainer />
-
+      <SuccessModal
+        title="ლისტინგი წარმატებით წაიშალა!"
+        showModal={showSuccessModal}
+        handleClose={() => setShowSuccessModal(false)}
+      />
       {/* Estate details */}
       <button onClick={() => navigate(-1)}>
         <LeftArrow />

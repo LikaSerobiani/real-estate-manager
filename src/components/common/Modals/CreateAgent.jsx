@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import Input from "../Input";
 import Modal from "../Modals/Modal";
@@ -7,26 +7,34 @@ import FileUploader from "../FileUploader";
 import Button from "../Button";
 import useAgentStore from "../../../stores/useAgentStore";
 import { agentValidationSchema } from "../../../validation/agentValidationSchema";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import SuccessModal from "./Success";
 
 export default function CreateAgent({ showModal, handleClose }) {
   const { addAgent } = useAgentStore();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       await addAgent(values);
       resetForm();
       handleClose();
-      toast.success("აგენტი წარმატებულად დაემატა!");
+      setShowSuccessModal(true);
+      setTimeout(() => {
+        setShowSuccessModal(false);
+      }, 2000);
     } catch (error) {
-      toast.error("Failed to add agent.");
+      console.log(error);
     }
     setSubmitting(false);
   };
 
   return (
     <>
+      <SuccessModal
+        title="აგენტი წარმატებულად დაემატა"
+        showModal={showSuccessModal}
+        handleClose={() => setShowSuccessModal(false)}
+      />
       <Modal isModalOpen={showModal} onClose={handleClose} padding="87px 105px">
         <div className="flex flex-col gap-[22px]">
           <h2 className="font-firago font-bold text-[32px] leading-[38.4px] text-secondary text-center">
@@ -125,7 +133,6 @@ export default function CreateAgent({ showModal, handleClose }) {
           </Formik>
         </div>
       </Modal>
-      <ToastContainer />
     </>
   );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import GroupedCheckbox from "../../common/GroupedCheckbox";
+import GroupedCheckbox from "../../common/GroupedCheckBox";
 
 const RegionFilter = ({ setRegions, regions }) => {
   return (
